@@ -1,0 +1,4 @@
+.BoardCell {
+  background-size: contain;
+  border: solid black 0.25px;
+}

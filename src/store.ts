@@ -111,8 +111,9 @@ export interface StoreState {
   gameTypeSelectedId: string;
   gameState: {
       board: GameState;
+      boardIdx: number[];
       numFlags: number;
-      status: number;
+      numReveals: number,
       isStarted: boolean;
       isFailed: boolean;
       isComplete: boolean;
@@ -163,6 +164,6 @@ const initialStore = {
 
 export const initializeStore = (): StoreState => {
   // deep copy object
-  const store = JSON.parse(JSON.stringify(initialStore));
+  const store = JSON.parse(JSON.stringify(initialStore as StoreState));
   return store;
 }

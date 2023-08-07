@@ -6,7 +6,7 @@ function GameSettings({ gameType, gameTypeSelectedId, dispatch }) {
   const [customSettings, setCustomSetting] = useState(gameType.Custom);
   const [selectedId, setGameTypeSelectedId] = useState(gameTypeSelectedId);
 
-  const setCustomValue = useCallback((settingType, value) => {
+  const setCustomSettingValue = useCallback((settingType, value) => {
     setCustomSetting({
       ...customSettings,
       [settingType]: Number(value),
@@ -66,20 +66,20 @@ function GameSettings({ gameType, gameTypeSelectedId, dispatch }) {
               </label>
             </td>
             <td className="height">
-              <input name={`height-${key}`} value={customSettings.height} onChange={(e) => setCustomValue('height', e.target.value)}/>
+              <input name={`height-${key}`} value={customSettings.height} onChange={(e) => setCustomSettingValue('height', e.target.value)}/>
             </td>
             <td className="width">
-              <input name={`width-${key}`} value={customSettings.width} onChange={(e) => setCustomValue('width', e.target.value)}/>
+              <input name={`width-${key}`} value={customSettings.width} onChange={(e) => setCustomSettingValue('width', e.target.value)}/>
             </td>
             <td className="mines">
-              <input name={`mines-${key}`} value={customSettings.mines} onChange={(e) => setCustomValue('mines', e.target.value)}/>
+              <input name={`mines-${key}`} value={customSettings.mines} onChange={(e) => setCustomSettingValue('mines', e.target.value)}/>
             </td>
           </tr>
         );
       }
     })
     return output;
-  }, [gameType, customSettings, selectedId, setCustomValue]);
+  }, [gameType, customSettings, selectedId, setCustomSettingValue]);
 
   return (
     <div className="GameSettings">
@@ -101,6 +101,6 @@ function GameSettings({ gameType, gameTypeSelectedId, dispatch }) {
   );
 }
 
-// no other component besides this one will drive changes to props
+// no other component besides this one will drive changes to input props
 // therefore its safe to prevent most external props change from forcing re-render
 export default memo(GameSettings, (prevProps, nextProps) => prevProps.dispatch === nextProps.dispatch);
